@@ -43,7 +43,7 @@ if [[ -f "$input_file" ]]; then
     while IFS="," read -r line; do
 
         # Print to the screen
-        if [[ $line =~ \.(jpg|jpeg|png|eps|gif|bmp|tiff|tif|svg|webp|ico|JPG|JPEG|PNG|EPS|GIF|BMP|TIFF|TIF|SVG|WEBP|ICO)$ ]]; then
+        if [[ $line =~ \.(jpg|jpeg|png|eps|gif|bmp|tiff|tif|svg|webp|ico|ttf|JPG|JPEG|PNG|EPS|GIF|BMP|TIFF|TIF|SVG|WEBP|ICO|TTF)$ ]]; then
                         
             # Get the image format using gmagick
             dir_path="${output_dir}${line}"
@@ -85,6 +85,10 @@ if [[ -f "$input_file" ]]; then
                 fi
             elif [ "$img_format" == "MVG (Magick Vector Graphics)" ]; then
                 if [[ $line =~ \.(svg|SVG)$ ]]; then
+                    img_match="TRUE"
+                fi
+            elif [ "$img_format" == "TTF (TrueType font)" ]; then
+                if [[ $line =~ \.(ttf|TTF)$ ]]; then
                     img_match="TRUE"
                 fi
             fi
